@@ -61,10 +61,10 @@ function Edit-VideoSource {
         $outputPath = Join-Path $directoryPath ($outputBasename + ".mp4")
         switch ($PSCmdlet.ParameterSetName) {
             "Duration" {
-                ffmpeg -ss $Start -t $Duration.TotalSeconds -i "$Path" -c copy "$outputPath"
+                ffmpeg -ss $Start -t $Duration.TotalSeconds -i "$Path" -c copy -map 0 "$outputPath"
             }
             "End" {
-                ffmpeg -ss $Start -to $End -i "$Path" -c copy "$outputPath"
+                ffmpeg -ss $Start -to $End -i "$Path" -c copy -map 0 "$outputPath"
             }
         }
     }
